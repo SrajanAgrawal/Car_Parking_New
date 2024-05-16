@@ -23,6 +23,13 @@ import { carRouter } from "./routes/car.routes.js";
 import {paymentRouter} from "./routes/payment.routes.js"
 import {adminRouter} from "./routes/admin.routes.js"
 
+app.use("/", (req,res) => {
+    res.status(200).json({
+        status: "success",
+        message: "Server is running",
+        data: process.env.CROSS_ORIGIN
+    })
+})
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/parking", parkingRouter)
 app.use("/api/v1/booking", bookingRouter)
