@@ -1,0 +1,28 @@
+const carTypeOptions = [
+    { value: "", label: "" },
+    { value: "Convertible", label: "Convertible" },
+    { value: "Coupe", label: "Coupe" },
+    { value: "Hatchback", label: "Hatchback" },
+    { value: "Hyundai Creta", label: "Hyundai Creta" },
+    { value: "Maruti Brezza", label: "Maruti Brezza" },
+    { value: "Maruti Ertiga", label: "Maruti Ertiga" },
+    { value: "Maruti Swift", label: "Maruti Swift" },
+    { value: "Sedan", label: "Sedan" },
+    { value: "SUV", label: "SUV" },
+    { value: "Tata Nexon", label: "Tata Nexon" },
+    { value: "Honda", label: "Honda" },
+    { value: "Hyundai i20", label: "Hyundai i20" },
+    { value: "Hyundai Verna", label: "Hyundai Verna" },
+    { value: "Kia Seltos", label: "Kia Seltos" },
+    { value: "Mahindra Scorpio", label: "Mahindra Scorpio" },
+    { value: "Mahindra Thar", label: "Mahindra Thar" },
+    { value: "Tata Punch", label: "Tata Punch" },
+    { value: "Crossover", label: "Crossover" },
+    { value: "Hyundai Venue", label: "Hyundai Venue" },
+    { value: "Jeep", label: "Jeep" },
+    { value: "Mahindra XUV300", label: "Mahindra XUV300" },
+    { value: "Maruti Suzuki Fronx", label: "Maruti Suzuki Fronx" },
+    { value: "Minivan", label: "Minivan" },
+  ];
+
+  export default carTypeOptions;
