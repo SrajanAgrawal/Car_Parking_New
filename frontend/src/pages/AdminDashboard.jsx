@@ -32,7 +32,7 @@ const AdminDashboard = () => {
     };
     
     useEffect(() => {
-        if (!user || !user.role.includes("admin")) {
+        if (!user || !user.role || !user.role.includes("admin")) {
             window.location.href = "/login";
         }
         getParkingInfo();

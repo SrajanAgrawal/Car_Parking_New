@@ -86,7 +86,7 @@ const Header = () => {
                             Contact
                         </NavLink>
                         {
-                            user && user.role.includes("admin") && (
+                            (user && user.role && user.role.includes("admin")) && (
                                 <NavLink to="/admin" className={`block py-2 px-4 rounded-md ${location.pathname === '/admin' ? 'bg-indigo-500 text-white font-semibold' : ''}`}>
                                     Admin
                                 </NavLink>

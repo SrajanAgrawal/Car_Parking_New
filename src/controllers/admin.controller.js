@@ -4,9 +4,8 @@ import ParkingSpot from "../models/parkingSpot.models.js";
 
 const getParkingInfo = asyncHandler(async (req, res) => {
     try {
-        if(!req.user.role.includes('admin')) {
+        if (!req.user || !req.user.role || !req.user.role.includes('admin')) {
             return res.status(401).json({ message: 'You are not authorized to access this route' });
-        
         }
         const parking = await Parking.findOne({owner: req.user._id}) .populate({
             path: 'buildings',
@@ -29,7 +28,7 @@ const getParkingInfo = asyncHandler(async (req, res) => {
 
 const changeSpotAvailability = asyncHandler(async (req, res) => {
     try {
-        if(!req.user.role.includes('admin')) {
+        if (!req.user || !req.user.role || !req.user.role.includes('admin')) {
             return res.status(401).json({ message: 'You are not authorized to access this route' });
         }
         const { spotId, isOccupied } = req.body;
