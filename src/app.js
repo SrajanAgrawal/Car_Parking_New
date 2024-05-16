@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"; // to use crud operation on cookies.
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.CROSS_ORIGIN,
     credentials: true
 }))
 
