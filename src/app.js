@@ -23,7 +23,7 @@ import { carRouter } from "./routes/car.routes.js";
 import {paymentRouter} from "./routes/payment.routes.js"
 import {adminRouter} from "./routes/admin.routes.js"
 
-app.use("/", (req,res) => {
+app.get("/", (req,res) => {
     res.status(200).json({
         status: "success",
         message: "Server is running",
