@@ -41,10 +41,11 @@ const parkingSpotSchema = new mongoose.Schema({
     releasedAt: {
         type: Date
     },
-    history: {
+    history: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Booking
-    }, // Array of booking history objects
+        ref: Booking,
+        default: []
+    }], // Array of booking history objects
     actualCheckInTime: {
         type: Date
     },
