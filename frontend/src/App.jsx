@@ -10,7 +10,7 @@ import Register from "./pages/Register.jsx"
 import VerifyEmail from "./pages/VerifyEmail.jsx"
 import SearchPage from "./pages/SearchPage.jsx"
 import ParkingDetailsPage from "./pages/ParkingDetailsPage.jsx"
-import { ToastContainer } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import Dashboard from "./pages/Dashboard.jsx"
 import About from "./pages/About.jsx"
 import Services from "./pages/Services.jsx"
@@ -33,6 +33,7 @@ function App() {
         const response = await axios.post(`${baseUrl}/api/v1/user/currentUser`, {}, { withCredentials: true });
         console.log('User Data:', response.data);
         dispatch(saveUserState(response.data.data))
+        toast(`Welcome ${response.data.data.firstName}`, { type: "success" })
         // setUser(response.data.data);
         // Add any additional handling after API call
       } catch (error) {
