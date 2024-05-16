@@ -11,7 +11,6 @@ import VerifyEmail from "./pages/VerifyEmail.jsx"
 import SearchPage from "./pages/SearchPage.jsx"
 import ParkingDetailsPage from "./pages/ParkingDetailsPage.jsx"
 import { ToastContainer } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from "./pages/Dashboard.jsx"
 import About from "./pages/About.jsx"
 import Services from "./pages/Services.jsx"
