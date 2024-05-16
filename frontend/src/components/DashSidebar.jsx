@@ -68,7 +68,7 @@ export default function DashSidebar() {
                       <Sidebar.Item
                         active={tab === 'profile'}
                         icon={BiSolidUserCircle}
-                        label={currentuser.isAdmin ? 'Admin' : 'User'}
+                        // label={currentuser.role.includes["admin"] ? 'Admin' : 'User'}
                         labelColor='dark'
                         as='div'
                       >
