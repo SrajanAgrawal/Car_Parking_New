@@ -2,19 +2,15 @@ import { Button, Sidebar } from 'flowbite-react';
 import {
   HiArrowSmRight,
   HiOutlineUserGroup,
-  
 } from 'react-icons/hi';
 import { FaCar } from "react-icons/fa";
 import { BiSolidUserCircle } from "react-icons/bi";
-// import { IoVideocam } from "react-icons/io5";
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import { signoutSuccess } from '../redux/user/userSlicer';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { BASE_URL } from "../constants.js"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { removeUserState } from '../redux/user/userSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
