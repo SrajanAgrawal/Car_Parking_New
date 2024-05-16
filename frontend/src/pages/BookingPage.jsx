@@ -94,7 +94,7 @@ const BookingPage = () => {
     });
 
 
-   
+
 
     const handleAddCar = () => {
         console.log("Add Car Clicked");
@@ -228,13 +228,13 @@ const BookingPage = () => {
             await axios.post(`${baseUrl}/api/v1/booking/makeBooking`, { ...bookingDetailsInfo }, { withCredentials: true }).then((res) => {
                 console.log(res.data);
                 console.log("Booking ID" + res.data.data.booking._id)
-            
+
                 // console.log("Booking ID:", bookingId)
                 toast(res.data.message, { type: "success" });
                 // Update user's bookingHistory with the new booking
                 const updatedBookingHistory = [...user.bookingHistory, res.data.data];
                 dispatch(updateUserState({ ...user, bookingHistory: updatedBookingHistory }))
-                
+
                 bookingId = res.data.data.booking._id.toString(); // Get the booking ID from the response
 
                 console.log("Booking ID:", bookingId)
@@ -264,7 +264,7 @@ const BookingPage = () => {
                 key, // Enter the Key ID generated from the Dashboard
                 amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 currency: "INR",
-                name: "Parkopedia", //your business name
+                name: "ParkingSpace", //your business name
                 description: "Test Transaction",
                 image: "https://thumbs.dreamstime.com/b/vector-logo-car-bicycle-parking-area-zone-156033342.jpg",
                 order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of

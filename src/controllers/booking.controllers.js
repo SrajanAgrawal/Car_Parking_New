@@ -240,7 +240,7 @@ const paymentVerification = asyncHandler(async (req, res) => {
 
         if (!isAuthentic) {
 
-            return res.redirect(`http://localhost:5173/paymentFail?reference=${razorpay_order_id}`)
+            return res.redirect(`https://car-parking-new.vercel.app/paymentFail?reference=${razorpay_order_id}`)
         }
 
         const booking = await Booking.findOne({ _id: bookingId }).populate("userID").populate("carID").populate("parkingSpot");
@@ -261,7 +261,7 @@ const paymentVerification = asyncHandler(async (req, res) => {
 
         const sms = await sendMessage(message, booking.userID.phoneNumber)
 
-        res.redirect(`http://localhost:5173/paymentSuccess?reference=${razorpay_order_id}`)
+        res.redirect(`https://car-parking-new.vercel.app/paymentSuccess?reference=${razorpay_order_id}`)
 
         console.log(req.body);
         // const { orderID } = req.body;
