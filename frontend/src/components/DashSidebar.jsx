@@ -20,7 +20,7 @@ export default function DashSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const { currentuser } = useSelector((state) => state.user);
+  const user = useSelector(state => state.user.currentUser);
   const [tab, setTab] = useState('');
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -75,7 +75,7 @@ export default function DashSidebar() {
                         Profile
                       </Sidebar.Item>
                     </Link>
-                    {currentuser && (
+                    {user && (
                       <Link to='/dashboard?tab=bookings'>
                         <Sidebar.Item
                           active={tab === 'bookings'}
@@ -86,7 +86,7 @@ export default function DashSidebar() {
                         </Sidebar.Item>
                       </Link>
                     )}
-                    {currentuser && (
+                    {user && (
                       <>
                         <Link to='/dashboard?tab=addcar'>
                           <Sidebar.Item
