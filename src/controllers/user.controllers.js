@@ -197,7 +197,8 @@ const loginUser = asyncHandler(async (req, res) => {
     // cookies can only be changed or updated by server 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: 'None'
     }
 
     return res.status(200)
