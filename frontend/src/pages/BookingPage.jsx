@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-
 import { Modal, Button, Label, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import Select from "react-select";
@@ -33,19 +32,7 @@ const BookingPage = () => {
     const spotType = queryParams.get("spotType");
     const availability = queryParams.get("availability");
     const city = queryParams.get("city");
-    // const state = queryParams.get("state");
-    // const address = queryParams.get("address");
-    // const ratings = queryParams.get("ratings");
-    // const operatingHours = queryParams.get("operatingHours");
-    // const images = queryParams.get("images");
-    // const facilities = queryParams.get("facilities");
-    // const accessibility = queryParams.get("accessibility");
     const ratePerHour = queryParams.get("ratePerHour");
-    // const rateOfPeakHour = queryParams.get("rateOfPeakHour");
-    // const description = queryParams.get("description");
-    // const levelOfParking = queryParams.get("levelOfParking");
-    // const securityRating = queryParams.get("securityRating");
-    // const searchingSpaceRating = queryParams.get("searchingSpaceRating");
 
     const user = useSelector(state => state.user.currentUser)
     const [isOpen, setIsOpen] = useState(false);
