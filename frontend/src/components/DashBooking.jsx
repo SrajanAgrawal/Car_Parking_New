@@ -46,7 +46,7 @@ function DashBooking() {
 
   return (
     // <div className=" w-[700px] mx-auto p-3 flex flex-row items-center justify-center">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto p-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto p-3 justify-center items-center">
       {Array.isArray(bookings) && bookings.length > 0 ? (
         bookings.map((booking, index) => (
           <div

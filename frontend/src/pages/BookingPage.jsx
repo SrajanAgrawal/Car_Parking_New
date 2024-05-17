@@ -424,7 +424,7 @@ const BookingPage = () => {
                                                 id="registrationNumber"
                                                 placeholder="MH XX AB 1234"
                                                 name="registrationNumber"
-                                                value={carInfo.registrationNumber}
+                                                value={carInfo.registrationNumber.toUpperCase()}
                                                 onChange={handleInputChange}
 
                                             />
@@ -437,7 +437,7 @@ const BookingPage = () => {
                                                 id="model"
                                                 placeholder="Maruti Swift"
                                                 name="model"
-                                                value={carInfo.model}
+                                                value={carInfo.model.toUpperCase()}
                                                 onChange={handleInputChange}
                                                 required
                                             />
@@ -451,7 +451,7 @@ const BookingPage = () => {
                                                 id="color"
                                                 placeholder="Red"
                                                 name="color"
-                                                value={carInfo.color}
+                                                value={carInfo.color.toUpperCase()}
                                                 onChange={handleInputChange}
                                                 required
                                             />

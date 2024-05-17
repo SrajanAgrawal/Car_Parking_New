@@ -34,7 +34,7 @@ function App() {
         const response = await axios.post(`${baseUrl}/api/v1/user/currentUser`, {}, { withCredentials: true });
         console.log('User Data:', response.data);
         dispatch(saveUserState(response.data.data))
-        toast(`Welcome ${response.data.data.firstName}`, { type: "success" })
+        
         // setUser(response.data.data);
         // Add any additional handling after API call
       } catch (error) {
