@@ -10,6 +10,7 @@ import Register from "./pages/Register.jsx"
 import VerifyEmail from "./pages/VerifyEmail.jsx"
 import SearchPage from "./pages/SearchPage.jsx"
 import ParkingDetailsPage from "./pages/ParkingDetailsPage.jsx"
+import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify"
 import Dashboard from "./pages/Dashboard.jsx"
 import About from "./pages/About.jsx"
