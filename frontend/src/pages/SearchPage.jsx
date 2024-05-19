@@ -39,7 +39,7 @@ const SearchPage = () => {
         }
         console.log("Search results:", response.data);
         setParkings(response.data.parkingSpots);
-        setMessage(`Showing ${parkings.length} results`); // Total Parkings: {parkings.length}
+        setMessage(`Showing ${response.data.parkingSpots.length} Results `); // Total Parkings: {parkings.length}
         setCityAllParkings(response.data.parkingSpots);
       } catch (error) {
         console.error("Error fetching search results:", error);
