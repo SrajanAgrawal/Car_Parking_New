@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { saveUserState } from "../redux/user/userSlicer.js"
 import { BASE_URL } from "../constants.js"
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -139,7 +139,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-            <ToastContainer />
+            
         </>
     )
 }

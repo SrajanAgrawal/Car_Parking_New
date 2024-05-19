@@ -5,7 +5,7 @@ import Select from "react-select";
 import { Label, TextInput } from "flowbite-react";
 import { baseUrl } from "../constants/baseUrl";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { updateUserState } from "../redux/user/userSlicer";
 import carTypeOptions from "../constants/carTypeOptions.js";
@@ -303,7 +303,6 @@ const DashAddcar = () => {
       </Modal>
     )}
   
-    <ToastContainer />
   </div>
   
   );

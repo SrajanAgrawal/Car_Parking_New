@@ -6,7 +6,7 @@ import {
   updateUserState
 } from "../redux/user/userSlicer";
 import { BASE_URL } from "../constants.js"
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 
 
 export default function DashProfile() {
@@ -231,7 +231,6 @@ export default function DashProfile() {
           {loading ? 'Updating...' : 'Update'}
         </Button>
       </form>
-      <ToastContainer />
     </div>
   );
 }

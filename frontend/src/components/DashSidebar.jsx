@@ -10,7 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { BASE_URL } from "../constants.js"
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { removeUserState } from '../redux/user/userSlicer.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -145,7 +145,6 @@ export default function DashSidebar() {
           )
         }
       </div>
-      <ToastContainer />
     </>
   );
 }

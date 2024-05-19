@@ -7,7 +7,7 @@ import carTypeOptions from "../constants/carTypeOptions.js";
 import axios from "axios";
 import { baseUrl } from "../constants/baseUrl.js";
 import { updateUserState } from "../redux/user/userSlicer.js";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import ParkingSpotDetails from "../components/ParkingSpotDetails.jsx";
 
@@ -471,7 +471,7 @@ const BookingPage = () => {
                     <Button className="w-[50%] mx-auto mt-4" onClick={handleMakePayment}>Make Payment</Button>
                 </div>
             </div>
-            <ToastContainer />
+            
         </>
     );
 };

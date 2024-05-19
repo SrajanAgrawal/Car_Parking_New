@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Label, TextInput } from "flowbite-react";
 import { BASE_URL } from "../constants";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 
 
 const VerifyEmail = () => {
@@ -61,7 +61,7 @@ const VerifyEmail = () => {
                     </button>
                 </div>
             </form>
-            <ToastContainer />
+            
         </div>
     );
 };

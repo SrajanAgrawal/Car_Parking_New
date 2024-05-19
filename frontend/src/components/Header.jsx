@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
 import axios from "axios"
 import { BASE_URL } from "../constants.js"
-import {toast, ToastContainer} from "react-toastify"
+import {toast} from "react-toastify"
 import { useNavigate } from "react-router-dom"
 
 const Header = () => {
@@ -118,7 +118,7 @@ const Header = () => {
 
                 </Navbar>
             </div>
-            <ToastContainer />
+            
         </>
     )
 }

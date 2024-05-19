@@ -5,7 +5,7 @@ import  { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { baseUrl } from "../constants/baseUrl";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 
 const AdminDashboard = () => {
     const user = useSelector((state) => state.user.currentUser);
@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                 <h1>You are not authorized to access this route</h1>
             )}
         </div>
-        <ToastContainer />
+        
         </>
     );
 };

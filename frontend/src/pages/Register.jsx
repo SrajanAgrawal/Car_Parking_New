@@ -4,7 +4,7 @@ import axios from "axios";
 import { Label, FileInput, TextInput } from "flowbite-react";
 import { BASE_URL } from "../constants.js";
 import "../styles.css";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
@@ -190,7 +190,7 @@ const Register = () => {
                 </div> */}
                 </form>
             </div>
-            <ToastContainer />
+            
         </div>
     );
 };
