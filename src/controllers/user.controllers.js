@@ -230,7 +230,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
         console.log(avatarLocalPath);
 
         const fileName = req.file.originalname;
-        const response = await uploadFileOnCloudinary(`\public\\temp\\${fileName}`);
+        const response = await uploadFileOnCloudinary(avatarLocalPath);
         // const avatar = await uploadOnCloudinary(avatarLocalPath)
         console.log(response.url)
 
