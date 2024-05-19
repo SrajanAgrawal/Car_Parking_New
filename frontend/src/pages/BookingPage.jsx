@@ -46,7 +46,16 @@ const BookingPage = () => {
         if (user === null || user === undefined) {
 
             navigate("/")
-            toast("Please login to continue", { type: "error" })
+            toast.error('Please login to continue', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         console.log("User:", user);
     }, [user, navigate]);
@@ -86,7 +95,16 @@ const BookingPage = () => {
     const handleAddCar = () => {
         console.log("Add Car Clicked");
         if (!user) {
-            toast("Please login to Add Car", { type: "error" });
+            toast.error('Please login to Add Car', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         setIsOpen(true);
@@ -107,7 +125,8 @@ const BookingPage = () => {
 
         if (name === "checkInTime") {
             if (new Date(value) >= new Date(bookingDetailsInfo.checkOutTime)) {
-                toast.error("Check-In time must be before Check-Out time", {
+               
+                toast.error('Check-In time must be before Check-Out time', {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -116,11 +135,21 @@ const BookingPage = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                });
+                    });
                 return;
             } else if (name === "checkInTime") {
                 if (new Date(value) <= new Date()) {
-                    toast("Check-In time must be after current time", { type: "error" });
+                    
+                    toast.error('Check-In time must be after current time', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                     return;
                 }
             }
@@ -128,7 +157,16 @@ const BookingPage = () => {
         }
         else if (name === "checkOutTime") {
             if (new Date(value) <= new Date(bookingDetailsInfo.checkInTime)) {
-                toast("Check-Out time must be after Check-In time", { type: "error" });
+                toast.error('Check-Out time must be after Check-In time', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 return;
             }
 
@@ -180,7 +218,17 @@ const BookingPage = () => {
         e.preventDefault();
         console.log("Car Info:", carInfo);
         if (!carInfo.type || !carInfo.model || !carInfo.color || !carInfo.vehicleNumber) {
-            toast("Please fill all the fields", { type: "error" });
+            
+            toast.error('Please fill all the fields', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if (carInfo.registrationNumber === "") {
@@ -191,7 +239,16 @@ const BookingPage = () => {
         axios.post(`${baseUrl}/api/v1/car/add`, carInfo, { withCredentials: true }).then((res) => {
 
             console.log(res.data);
-            toast(res.data.message, { type: "success" });
+            toast.success(res.data.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             // Update user's carsInfo with the new car
             const updatedCarsInfo = [...user.carsInfo, res.data.data];
 
@@ -199,7 +256,16 @@ const BookingPage = () => {
             dispatch(updateUserState({ ...user, carsInfo: updatedCarsInfo }));
 
         }).catch((err) => {
-            toast(err.response.data.message, { type: "error" });
+            toast.error(err.response.data.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             console.log(err);
         });
         handleCloseModal();
@@ -208,7 +274,17 @@ const BookingPage = () => {
     const handleMakePayment = async () => {
         try {
             if (!bookingDetailsInfo.carID || !bookingDetailsInfo.checkInTime || !bookingDetailsInfo.checkOutTime || !bookingDetailsInfo.totalAmount) {
-                toast("Please fill all the fields", { type: "error" });
+               
+                toast.error('Please fill all the fields', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 return;
             }
 
@@ -216,8 +292,16 @@ const BookingPage = () => {
                 console.log(res.data);
                 console.log("Booking ID" + res.data.data.booking._id)
 
-                // console.log("Booking ID:", bookingId)
-                toast(res.data.message, { type: "success" });
+                toast.success(res.data.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 // Update user's bookingHistory with the new booking
                 const updatedBookingHistory = [...user.bookingHistory, res.data.data];
                 dispatch(updateUserState({ ...user, bookingHistory: updatedBookingHistory }))
@@ -227,7 +311,16 @@ const BookingPage = () => {
                 console.log("Booking ID:", bookingId)
 
             }).catch((err) => {
-                toast(err.response.data.message, { type: "error" });
+                toast.error(err.response.data.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 console.log(err);
                 return err;
             });

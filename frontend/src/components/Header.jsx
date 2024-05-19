@@ -37,14 +37,41 @@ const Header = () => {
               // dispatch(signoutSuccess());
               dispatch(removeUserState());
               navigate("/")
-              toast("Logged out successfully", { type: "success" })
+              toast.success('Logged Out Successfully', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
               console.log(res.message);
             } else {
-              toast("Something went wrong", { type: "error" })
+              toast.error('Something Went wrong', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
               console.log(res.message);
             }
           } catch (error) {
-            toast("Something went wrong", { type: "error" })
+            toast.error('Something went wrong', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             console.log(error.message);
           }
     }
