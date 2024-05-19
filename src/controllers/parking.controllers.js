@@ -147,7 +147,7 @@ const generateRandomParkingData = asyncHandler(async (req, res) => {
           for (let m = 1; m <= capacityTemp; m++) {
             const spot = new ParkingSpot({
               parkingId: parkingSpot._id,
-              parkingSpotNumber: `${building.buildingName}${building.floors[l].floorNumber}00${m}`,
+              parkingSpotNumber: `${building.buildingName}${building.floors[l-1].floorNumber}00${m}`,
               isOccupied: faker.datatype.boolean(),
               
               history: []
