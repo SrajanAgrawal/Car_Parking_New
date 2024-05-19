@@ -35,7 +35,7 @@ export default function DashProfile() {
       console.log(file);
       setImageFile(file);
       setImageFileUrl(URL.createObjectURL(file));
-      toast("Image selected", { type: "success" });
+      // toast("Image selected", { type: "success" });
     }
   };
   
@@ -53,11 +53,29 @@ export default function DashProfile() {
 
       if (res.status === 200) {
         dispatch(updateUserState(res.data.data));
-        toast("Profile updated successfully", { type: "success" });
+        toast.success('Update Successfully!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(res.data);
       } else {
         // dispatch(updateFailure(res.message));
-        toast("Failed to update profile", { type: "error" });
+        toast.error('Failed to update profile', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(res.message)
 
       }
@@ -72,7 +90,16 @@ export default function DashProfile() {
   useEffect(() => {
     if (imageFile) {
       console.log("uploading image");
-      toast("Uploading image", { type: "info" })
+      toast.info('Uploading image', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       uploadImage();
     }
     
@@ -95,16 +122,42 @@ export default function DashProfile() {
 
       if (res.status === 200) {
         dispatch(updateUserState(res.data.data));
-        toast("Avatar updated successfully", { type: "success" });
+       
+        toast.success('Avatar updated successfully', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(res.data);
       } else {
-        // dispatch(updateFailure(res.message));
-        toast("Failed to update avatar", { type: "error" });
+        toast.error('Failed to update avatar', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(res.message)
       }
     } catch (error) {
-      // dispatch(updateFailure(error.message));
-      toast("Failed to update avatar", { type: "error" });
+      toast.error('Failed to update avatar', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       console.log(error.message);
     }finally {
       setLoading(false); // Set loading state back to false

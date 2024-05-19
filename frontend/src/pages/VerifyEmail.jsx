@@ -20,7 +20,16 @@ const VerifyEmail = () => {
             const response = await axios.post(`${BASE_URL}/api/v1/user/verfiy-email`, { email, otp });
             console.log('API Response:', response.data);
             setError(response.data.message);
-            toast("Email Verified Successfully", { type: "success" })
+            toast.success('Email Verified Successfully', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             navigate("/login");
         } catch (error) {
             setError(error.response.data.message);

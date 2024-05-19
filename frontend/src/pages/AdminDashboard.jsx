@@ -43,7 +43,17 @@ const AdminDashboard = () => {
             const changeSpot = await axios.post(`${baseUrl}/api/v1/admin/changeSpotAvailability`, {spotId: id, isOccupied}, { withCredentials: true });
             console.log(changeSpot.data)
             // document.getElementById('spotOccupied').innerHTML = isOccupied ? "True" : "False";
-            toast(changeSpot.data.message, {type: "success"})
+            
+            toast.success(changeSpot.data.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             setParking(changeSpot.data.data.parkingId)
         } catch (error) {
 

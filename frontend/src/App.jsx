@@ -34,7 +34,7 @@ function App() {
         const response = await axios.post(`${baseUrl}/api/v1/user/currentUser`, {}, { withCredentials: true });
         console.log('User Data:', response.data);
         dispatch(saveUserState(response.data.data))
-        
+
         // setUser(response.data.data);
         // Add any additional handling after API call
       } catch (error) {
@@ -69,7 +69,18 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
 
       </Routes>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
     </BrowserRouter>
 
   )

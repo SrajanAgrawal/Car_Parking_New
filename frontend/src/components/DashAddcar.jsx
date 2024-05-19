@@ -68,7 +68,17 @@ const DashAddcar = () => {
       !carInfo.color ||
       !carInfo.vehicleNumber
     ) {
-      toast("Please fill all the fields", { type: "error" });
+      // toast("Please fill all the fields", { type: "error" });
+      toast.error('Please Fill All The Fields', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       return;
     }
     // Add logic to submit car data to backend
@@ -77,7 +87,16 @@ const DashAddcar = () => {
       .post(`${baseUrl}/api/v1/car/add`, carInfo, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
-        toast(res.data.message, { type: "success" });
+        toast.success(res.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         // Update user's carsInfo with the new car
         const updatedCarsInfo = [...user.carsInfo, res.data.data];
 
@@ -85,7 +104,16 @@ const DashAddcar = () => {
         dispatch(updateUserState({ ...user, carsInfo: updatedCarsInfo }));
       })
       .catch((err) => {
-        toast(err.response.data.message, { type: "error" });
+        toast.error(err.response.data.message , {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(err);
       });
 
@@ -102,9 +130,17 @@ const DashAddcar = () => {
       )
       .then((res) => {
         console.log(res.data);
-        toast(res.data.message, {
-          type: "success",
-        });
+        
+          toast.success(res.data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
         console.log(user);
         const updatedCarsInfo = user.carsInfo.filter((car) => car._id !== id);
 
@@ -112,7 +148,16 @@ const DashAddcar = () => {
         dispatch(updateUserState({ ...user, carsInfo: updatedCarsInfo }));
       })
       .catch((err) => {
-        toast(err.response.data.message, { type: "error" });
+        toast.error(err.response.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(err);
       });
 

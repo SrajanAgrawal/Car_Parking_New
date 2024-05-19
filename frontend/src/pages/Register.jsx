@@ -52,7 +52,16 @@ const Register = () => {
             const response = await axios.post(`${BASE_URL}/api/v1/user/register`, formData);
             console.log('API Response:', response.data);
             setError('');
-            toast(response.data.message, { type: "success" });
+            toast.success(response.data.message, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             navigate("/verify-email");
         } catch (error) {
             // setError(error.response.data.message);

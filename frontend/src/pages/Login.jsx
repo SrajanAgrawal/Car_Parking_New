@@ -21,7 +21,16 @@ const Login = () => {
     const handleLoginUser = async (e) => {
         e.preventDefault()
         if (email === "" || password === "") {
-            toast("Please fill all the fields", { type: "error" })
+            toast.error('Please fill all the fields', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         else {
             const user = {
@@ -36,7 +45,16 @@ const Login = () => {
                 // to dispatch the global state
                 dispatch(saveUserState(res.data.data))
                 
-                toast(`${res.data.message}`, { type: "success" })
+                toast.success(res.data.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 console.log(res.data.data)
                 if(res.data.data.isVerified === false) {
                     
@@ -48,7 +66,16 @@ const Login = () => {
 
             }).catch((err) => {
                 console.log(err)
-                toast(`${err.response.data.message}`, { type: "error" })
+                toast.error( err.response.data.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 setLoading(false);
                 
             })
