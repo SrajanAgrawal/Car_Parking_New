@@ -59,7 +59,7 @@ const Login = () => {
         <>
             <div className="h-screen overflow-hidden flex flex-col md:flex-row justify-around mt-10">
 
-                <div className="hero-section  md:w-[50%] z-10 hidden md:block   ">
+                <div className="hero-section  md:w-[50%] z-10 hidden md:block">
 
                 </div>
                 <div className="w-[100%] md:w-[50%] overflow-y-auto flex flex-col items-center justify-center">

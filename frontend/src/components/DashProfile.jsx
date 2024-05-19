@@ -47,7 +47,8 @@ export default function DashProfile() {
     try {
       const res = await axios.patch(
         `${BASE_URL}/api/v1/user/update-user-account`,
-        { firstName: firstname, middleName: middlename, lastName: lastname} , {withCredentials: true}// Send updated fullname and email
+        { firstName: firstname, middleName: middlename, lastName: lastname} , {withCredentials: true}
+        // Send updated fullname and email
       );
 
       if (res.status === 200) {

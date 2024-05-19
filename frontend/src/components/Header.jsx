@@ -7,9 +7,14 @@ import { Link, NavLink } from "react-router-dom"
 import { removeUserState } from "../redux/user/userSlicer"
 import { useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
+import axios from "axios"
+import { BASE_URL } from "../constants.js"
+import {toast, ToastContainer} from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 const Header = () => {
 
+    const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.currentUser) // 2nd line
@@ -24,11 +29,24 @@ const Header = () => {
         }
     }, [user])
 
-    const handleSignOut = () => {
-        // sign out api call
-        setIsLoggedin(false)
-        dispatch(removeUserState());
-        window.location.href = "/login"
+    const handleSignOut = async () => {
+        try {
+            const res = await axios.post(`${BASE_URL}/api/v1/user/logout`, {}, { withCredentials: true });
+      
+            if (res.status === 200) {
+              // dispatch(signoutSuccess());
+              dispatch(removeUserState());
+              navigate("/")
+              toast("Logged out successfully", { type: "success" })
+              console.log(res.message);
+            } else {
+              toast("Something went wrong", { type: "error" })
+              console.log(res.message);
+            }
+          } catch (error) {
+            toast("Something went wrong", { type: "error" })
+            console.log(error.message);
+          }
     }
 
     return (
@@ -100,6 +118,7 @@ const Header = () => {
 
                 </Navbar>
             </div>
+            <ToastContainer />
         </>
     )
 }
