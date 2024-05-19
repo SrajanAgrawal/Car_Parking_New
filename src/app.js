@@ -26,7 +26,7 @@ import {adminRouter} from "./routes/admin.routes.js"
 app.get("/", (req,res) => {
     res.status(200).json({
         status: "success",
-        message: "Server is running",
+        message: `Server is running on ${process.env.NODE_ENV} mode`,
         data: process.env.CROSS_ORIGIN
     })
 })
