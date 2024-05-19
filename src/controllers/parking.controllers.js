@@ -134,7 +134,7 @@ const generateRandomParkingData = asyncHandler(async (req, res) => {
           floors: []
         };
 
-        for (let k = 0; k < 1; k++) {
+        for (let k = 1; k <= 1; k++) {
           building.floors.push({
             floorNumber: k,
             spots: []
