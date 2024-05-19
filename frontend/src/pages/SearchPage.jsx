@@ -23,10 +23,13 @@ const SearchPage = () => {
   const [accessibilityFilter, setAccessibilityFilter] = useState("All");
   const [levelOfParkingFilter, setLevelOfParkingFilter] = useState("All");
 
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       try {
+        setMessage("Loading...");
+
         console.log("Query:", query);
         let response;
         if ( query !== null) {
@@ -36,6 +39,7 @@ const SearchPage = () => {
         }
         console.log("Search results:", response.data);
         setParkings(response.data.parkingSpots);
+        setMessage(`Showing ${parkings.length} results`); // Total Parkings: {parkings.length}
         setCityAllParkings(response.data.parkingSpots);
       } catch (error) {
         console.error("Error fetching search results:", error);
@@ -93,16 +97,7 @@ const SearchPage = () => {
             <option value="Uncovered">Uncovered</option>
           </select>
         </div>
-        {/* <div className="flex items-center mb-2 md:mb-0 ml-0 md:ml-4 ">
-          <label htmlFor="availabilityFilter" className="mr-2">Availability:</label>
-          <select id="availabilityFilter" className="border border-gray-300 rounded px-3 py-1 focus:outline-none" onChange={(e) => setAvailabilityFilter(e.target.value)}>
-            <option value="All">All</option>
-            <option value="Available">Available</option>
-            <option value="Occupied">Occupied</option>
-            <option value="Reserved">Reserved</option>
-            <option value="Out of Service">Out of Service</option>
-          </select>
-        </div> */}
+        
         <div className="flex items-center mb-2 md:mb-0 ml-0 md:ml-4">
           <label htmlFor="accessibilityFilter" className="mr-2">Accessibility:</label>
           <select id="accessibilityFilter" className="border border-gray-300 rounded px-3 py-1 focus:outline-none" onChange={(e) => setAccessibilityFilter(e.target.value)}>
@@ -129,7 +124,9 @@ const SearchPage = () => {
 
 
         <div className="parkings-card w-full lg:w-1/2 overflow-y-auto overflow-x-hidden hide-scrollbar grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 p-5">
-          <h1 className="text-2xl font-semibold mb-4">Total Parkings: {parkings.length}</h1>
+          {
+            message && <h1 className="text-2xl font-semibold mb-4">{message}</h1>
+          }
           {parkings.map((parking) => (
             <div key={parking._id} className="flex flex-col md:flex-row lg:flex-row parking-card border border-gray-300 rounded p-4 space-x-4 h-full" onClick={() => handleParkingCardClick(parking._id)}>
               <div className="lg:w-1/2 md:w-1/2 h-56 sm:h-64 xl:h-80 2xl:h-96 max-w-xs">
