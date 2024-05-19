@@ -26,7 +26,7 @@ const makeBookingByUser = asyncHandler(async (req, res) => {
             })
         }
 
-        
+
 
         const user = req.user;
         // save the booking in the user account
@@ -253,11 +253,95 @@ const paymentVerification = asyncHandler(async (req, res) => {
 
         // Send the Sms to the user
 
+        const message1 = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            text-align: center;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 0;
+            border-radius: 8px 8px 0 0;
+        }
+        .email-body {
+            margin: 20px 0;
+        }
+        .email-footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777777;
+        }
+        .button {
+            display: inline-block;
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        .info {
+            margin: 10px 0;
+        }
+        .info-title {
+            font-weight: bold;
+        }
+        .info-detail {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h2>Thanks For Booking With Us!</h2>
+        </div>
+        <div class="email-body">
+            <p class="info"><span class="info-title">Your Booking Reference:</span><span class="info-detail">${razorpay_order_id}</span></p>
+            <p class="info"><span class="info-title">Your Payment of:</span><span class="info-detail">Rs.${booking.totalAmount} has been received successfully.</span></p>
+            <p class="info"><span class="info-title">Your CheckIn Time:</span><span class="info-detail">${booking.checkInTime}</span></p>
+            <p class="info"><span class="info-title">Your CheckOut Time:</span><span class="info-detail">${booking.checkOutTime}</span></p>
+            <p class="info"><span class="info-title">Your Parking Spot:</span><span class="info-detail">${booking.parkingSpot.address}</span></p>
+            <p class="info"><span class="info-title">Your Car:</span><span class="info-detail">${booking.carID.vehicleNumber}</span></p>
+            <p class="info"><span class="info-title">Parking Spot Link:</span><span class="info-detail"><a href="https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude}" class="button">View on Map</a></span></p>
+        </div>
+        <div class="email-footer">
+            <p>For any query contact us at: 1234567890</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
+
+        // send the mail
+        sendMail(booking.userID.email, "Booking Confirmation", message1);
+
+
         const message = `Thanks For Booking With Us! \n Your Booking Reference is ${razorpay_order_id} \n Your Payment of Rs.${booking.totalAmount} has been received successfully. \n Your CheckIn Time is ${booking.checkInTime} \n Your CheckOut Time is ${booking.checkOutTime} \n Your Parking Spot is ${booking.parkingSpot.address} \n Your Car is ${booking.carID.vehicleNumber} \n Additional Details : Parking Spot Link: https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude} \n For any query contact us at: 1234567890
         `
 
-        // send the mail
-        sendMail(booking.userID.email, "Booking Confirmation", message)
+        // send the phone message
 
         const sms = await sendMessage(message, booking.userID.phoneNumber)
 
