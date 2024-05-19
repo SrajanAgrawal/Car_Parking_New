@@ -141,10 +141,10 @@ const generateRandomParkingData = asyncHandler(async (req, res) => {
           });
         }
 
-        for (let l = 0; l < building.floors.length; l++) {
+        for (let l = 1; l <= building.floors.length; l++) {
           const capacityTemp = faker.number.int({ min: 5, max: 15 });
           capacity += capacityTemp;
-          for (let m = 0; m < capacityTemp; m++) {
+          for (let m = 1; m <= capacityTemp; m++) {
             const spot = new ParkingSpot({
               parkingId: parkingSpot._id,
               parkingSpotNumber: `${building.buildingName}${building.floors[l].floorNumber}00${m}`,
