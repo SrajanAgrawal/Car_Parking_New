@@ -208,16 +208,28 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
-    await User.findByIdAndUpdate(
-        req.user._id,
-        { $unset: { refreshToken: 1 } },
-        { new: true }
-
-    );
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
-    res.status(200).json({ message: "User logged out successfully" });
-})
+    try {
+        await User.findByIdAndUpdate(
+            req.user._id,
+            { $unset: { refreshToken: 1 } },
+            { new: true }
+        );
+    
+        const cookieOptions = {
+            httpOnly: true,
+            sameSite: 'None', // or 'Lax', depending on your requirements
+            secure: process.env.NODE_ENV === 'production', // ensure this is only true in production
+        };
+    
+        res.clearCookie("accessToken", cookieOptions);
+        res.clearCookie("refreshToken", cookieOptions);
+    
+        res.status(200).json({ message: "User logged out successfully" });
+        
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong while logging out the user", error: error.message})
+    }
+});
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
 
