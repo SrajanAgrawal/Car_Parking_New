@@ -68,7 +68,7 @@ const BookingPage = () => {
     if (user && user.carsInfo) {
         yourCarOptions = user.carsInfo.map((car) => ({
             value: car._id,
-            label: `Car ${car.vehicleNumber} - ${car.model}`,
+            label: `${car.vehicleNumber} - ${car.model}`,
         }));
     }
     const [bookingDetailsInfo, setBookingDetailsInfo] = useState({
