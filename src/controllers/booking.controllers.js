@@ -49,7 +49,7 @@ const makeBookingByUser = asyncHandler(async (req, res) => {
                     if (!spot.isOccupied) {
                         availableSpot = spot;
                         spot.isOccupied = true;
-                        await spot.save({ validateBeforeSave: false});
+                        await spot.save({ validateBeforeSave: false });
 
                         break;
                     }
@@ -382,7 +382,26 @@ const paymentVerification = asyncHandler(async (req, res) => {
         sendMail(booking.userID.email, "Booking Confirmation", message1);
 
 
-        const message = `Thanks For Booking With Us! \n Your Booking Reference is ${razorpay_order_id} \n Your Payment of Rs.${booking.totalAmount} has been received successfully. \n Your CheckIn Time is ${booking.checkInTime} \n Your CheckOut Time is ${booking.checkOutTime} \n Your Parking Spot is ${booking.parkingSpot.address} \n Your Car is ${booking.carID.vehicleNumber} \n Additional Details : Parking Spot Address: https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude} \n Navigation For Parking Location: https://car-parking-new.vercel.app/${booking.parkingSpot._id}/${booking.mainParkingSpot.parkingSpotNumber}.jpeg \n For any query contact us at: +91-8006251300`;
+        const message = `Thanks For Booking With Us!
+
+        Your Booking Reference is: ${razorpay_order_id}
+
+        Your Payment of Rs.${booking.totalAmount} has been received successfully.
+
+        Your CheckIn Time is: ${booking.checkInTime}
+        Your CheckOut Time is: ${booking.checkOutTime}
+
+        Your Parking Spot Number is: ${booking.mainParkingSpot.parkingSpotNumber}
+        Your Parking Address is: ${booking.parkingSpot.address}
+
+        Your Car is: ${booking.carID.vehicleNumber}
+
+        Additional Details:
+        Parking Spot Address: https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude}
+        Navigation For Parking Location: https://car-parking-new.vercel.app/${booking.parkingSpot._id}/${booking.mainParkingSpot.parkingSpotNumber}.jpeg
+
+        Email: love.mittal@mangalayatan.edu.in
+        For any query, contact us at: +91-8006251300`;
 
         // send the phone message
 
