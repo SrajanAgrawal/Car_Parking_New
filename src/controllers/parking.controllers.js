@@ -153,7 +153,7 @@ const generateRandomParkingData = asyncHandler(async (req, res) => {
               history: []
             })
             await spot.save();
-            building.floors[l].spots.push(spot);
+            building.floors[l-1].spots.push(spot);
           }
         }
         buildings.push(building);
