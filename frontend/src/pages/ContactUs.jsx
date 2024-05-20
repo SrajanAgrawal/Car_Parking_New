@@ -29,9 +29,9 @@ const ContactUs = () => {
           {/* Contact Information */}
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
-            <p className="mb-2"><span className="font-semibold">Email:</span> contact@parkingmanagement.com</p>
-            <p className="mb-2"><span className="font-semibold">Phone:</span> +1 (123) 456-7890</p>
-            <p className="mb-2"><span className="font-semibold">Address:</span> 123 Parking Ave, City, Country</p>
+            <p className="mb-2"><span className="font-semibold">Email:</span> love.mittal@mangalayatan.edu.in </p>
+            <p className="mb-2"><span className="font-semibold">Phone:</span> +91-6395147014 </p>
+            <p className="mb-2"><span className="font-semibold">Address:</span> Aligarh, Uttar Pradesh, India</p>
           </div>
         </div>
       </div>

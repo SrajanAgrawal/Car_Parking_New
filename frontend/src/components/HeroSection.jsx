@@ -17,7 +17,7 @@ const HeroSection = () => {
                 <p className="text-lg mb-4">Find parking spaces easily with our platform</p>
                 <SearchComponent />
                 <button className="bg-white text-blue-700 font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
-                    Learn More &rarr;
+                    How To Book &rarr;
                 </button>
             </div>
         </div>
