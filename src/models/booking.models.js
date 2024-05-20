@@ -25,6 +25,12 @@ const bookingSchema = new mongoose.Schema(
       ref: "Parking",
       required: true,
     },
+    mainParkingSpot: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ParkingSpot",
+      required: true,
+    },
+    
     status: {
       type: String,
       enum: ["Booked", "Checked-in", "Checked-out"],

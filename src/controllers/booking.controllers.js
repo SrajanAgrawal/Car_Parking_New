@@ -4,6 +4,9 @@ import { instance } from "../index.js";
 import crypto from "crypto";
 import { sendMail } from "../utils/sendMail.js";
 import { sendMessage } from "../utils/sendMessage.js";
+import { User } from "../models/user.models.js";
+import ParkingSpot from "../models/parkingSpot.models.js";
+import Parking from "../models/parking.models.js";
 
 
 const makeBookingByUser = asyncHandler(async (req, res) => {
@@ -28,6 +31,43 @@ const makeBookingByUser = asyncHandler(async (req, res) => {
 
 
 
+        const parking = await Parking.findById(parkingSpot).populate({
+            path: 'buildings.floors.spots',
+            model: 'ParkingSpot'
+        });
+        if (!parking) {
+            return res.status(404).json({
+                status: "fail",
+                message: "Parking spot not found"
+            });
+        }
+
+        let availableSpot = null;
+        for (const building of parking.buildings) {
+            for (const floor of building.floors) {
+                for (const spot of floor.spots) {
+                    if (!spot.isOccupied) {
+                        availableSpot = spot;
+                        spot.isOccupied = true;
+                        await spot.save({ validateBeforeSave: false});
+
+                        break;
+                    }
+                }
+                if (availableSpot) break;
+            }
+            if (availableSpot) break;
+        }
+
+        if (!availableSpot) {
+            return res.status(400).json({
+                status: "fail",
+                message: "No available spots"
+            });
+        }
+
+
+
         const user = req.user;
         // save the booking in the user account
         await Booking.create({
@@ -35,6 +75,7 @@ const makeBookingByUser = asyncHandler(async (req, res) => {
 
             carID,
             parkingSpot,
+            mainParkingSpot: availableSpot._id,
             totalAmount,
             checkInTime,
             checkOutTime,
@@ -243,7 +284,7 @@ const paymentVerification = asyncHandler(async (req, res) => {
             return res.redirect(`https://car-parking-new.vercel.app/paymentFail?reference=${razorpay_order_id}`)
         }
 
-        const booking = await Booking.findOne({ _id: bookingId }).populate("userID").populate("carID").populate("parkingSpot");
+        const booking = await Booking.findOne({ _id: bookingId }).populate("userID").populate("carID").populate("parkingSpot").populate("mainParkingSpot");
         console.log(booking);
         booking.payment_id = razorpay_payment_id;
         booking.order_id = razorpay_order_id;
@@ -322,12 +363,15 @@ const paymentVerification = asyncHandler(async (req, res) => {
             <p class="info"><span class="info-title">Your Payment of:</span><span class="info-detail">Rs.${booking.totalAmount} has been received successfully.</span></p>
             <p class="info"><span class="info-title">Your CheckIn Time:</span><span class="info-detail">${booking.checkInTime}</span></p>
             <p class="info"><span class="info-title">Your CheckOut Time:</span><span class="info-detail">${booking.checkOutTime}</span></p>
-            <p class="info"><span class="info-title">Your Parking Spot:</span><span class="info-detail">${booking.parkingSpot.address}</span></p>
+            <p class="info"><span class="info-title">Your Parking Spot:</span><span class="info-detail">${booking.mainParkingSpot.parkingSpotNumber}</span></p>
+            <p class="info"><span class="info-title">Your Parking Address:</span><span class="info-detail">${booking.parkingSpot.address}</span></p>
             <p class="info"><span class="info-title">Your Car:</span><span class="info-detail">${booking.carID.vehicleNumber}</span></p>
-            <p class="info"><span class="info-title">Parking Spot Link:</span><span class="info-detail"><a href="https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude}" class="button">View on Map</a></span></p>
+            <p class="info"><span class="info-title">Parking Spot Link:</span><span class="info-detail"><a href="https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude}" class="button">View Address</a></span></p>
+            <p class="info"><span class="info-title">Navigation For Parking Location:</span><span class="info-detail"><a href="https://car-parking-new.vercel.app/${booking.parkingSpot._id}/${booking.mainParkingSpot.parkingSpotNumber}.jpeg" class="button">View on Map</a></span></p>
         </div>
         <div class="email-footer">
-            <p>For any query contact us at: 1234567890</p>
+            <p>love.mittal@mangalayatan.edu.in</p>
+            <p>For any query contact us at: +91-8006251300</p>
         </div>
     </div>
 </body>
@@ -338,8 +382,7 @@ const paymentVerification = asyncHandler(async (req, res) => {
         sendMail(booking.userID.email, "Booking Confirmation", message1);
 
 
-        const message = `Thanks For Booking With Us! \n Your Booking Reference is ${razorpay_order_id} \n Your Payment of Rs.${booking.totalAmount} has been received successfully. \n Your CheckIn Time is ${booking.checkInTime} \n Your CheckOut Time is ${booking.checkOutTime} \n Your Parking Spot is ${booking.parkingSpot.address} \n Your Car is ${booking.carID.vehicleNumber} \n Additional Details : Parking Spot Link: https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude} \n For any query contact us at: 1234567890
-        `
+        const message = `Thanks For Booking With Us! \n Your Booking Reference is ${razorpay_order_id} \n Your Payment of Rs.${booking.totalAmount} has been received successfully. \n Your CheckIn Time is ${booking.checkInTime} \n Your CheckOut Time is ${booking.checkOutTime} \n Your Parking Spot is ${booking.parkingSpot.address} \n Your Car is ${booking.carID.vehicleNumber} \n Additional Details : Parking Spot Address: https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude} \n Navigation For Parking Location: https://car-parking-new.vercel.app/${booking.parkingSpot._id}/${booking.mainParkingSpot.parkingSpotNumber}.jpeg \n For any query contact us at: +91-8006251300`;
 
         // send the phone message
 
