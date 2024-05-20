@@ -384,24 +384,26 @@ const paymentVerification = asyncHandler(async (req, res) => {
 
         const message = `Thanks For Booking With Us!
 
-        Your Booking Reference is: ${razorpay_order_id}
+Your Booking Reference is: ${razorpay_order_id}
 
-        Your Payment of Rs.${booking.totalAmount} has been received successfully.
+Your Payment of Rs.${booking.totalAmount} has been received successfully.
 
-        Your CheckIn Time is: ${booking.checkInTime}
-        Your CheckOut Time is: ${booking.checkOutTime}
+Your CheckIn Time is: ${booking.checkInTime}
+Your CheckOut Time is: ${booking.checkOutTime}
 
-        Your Parking Spot Number is: ${booking.mainParkingSpot.parkingSpotNumber}
-        Your Parking Address is: ${booking.parkingSpot.address}
+Your Parking Spot Number is: ${booking.mainParkingSpot.parkingSpotNumber}
+Your Parking Address is: ${booking.parkingSpot.address}
 
-        Your Car is: ${booking.carID.vehicleNumber}
+Your Car is: ${booking.carID.vehicleNumber}
 
-        Additional Details:
-        Parking Spot Address: https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude}
-        Navigation For Parking Location: https://car-parking-new.vercel.app/${booking.parkingSpot._id}/${booking.mainParkingSpot.parkingSpotNumber}.jpeg
+Additional Details:
+Parking Spot Address: 
+https://www.google.com/maps/search/?api=1&query=${booking.parkingSpot.latitude}%2C-${booking.parkingSpot.longitude}
+Navigation For Parking Location: 
+https://car-parking-new.vercel.app/${booking.parkingSpot._id}/${booking.mainParkingSpot.parkingSpotNumber}.jpeg
 
-        Email: love.mittal@mangalayatan.edu.in
-        For any query, contact us at: +91-8006251300`;
+Email: love.mittal@mangalayatan.edu.in
+For any query, contact us at: +91-8006251300`;
 
         // send the phone message
 
